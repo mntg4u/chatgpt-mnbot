@@ -10,8 +10,7 @@ async def stats(c, m):
     k = users.count_documents({})
     await m.reply_text(f"**Total user**: {k}")
 
-
-@Client.on_message(filters.command("broadcast") & filters.reply)
+@Client.on_message(filters.command("broadcast") & filters.reply & filters.private & filters.user(ADMINS))
 async def broadcast(client, message):
     try:        
         userr = users.find()  
@@ -75,7 +74,7 @@ async def callback(client, query):
         users.update_one({"user": user_id}, {"$set": {"mode": custom}})        
         await query.answer(f"Your mode has been set to {mode}.")
 
-@Client.on_message(filters.command("start") & filters.private)
+@Client.on_message(filters.command("start"))
 async def start(client, message):
     if FSUB_ID and not await not_subscribed(client, message):
         invite_link = await client.create_chat_invite_link(int(FSUB_ID))
@@ -89,7 +88,7 @@ async def start(client, message):
         await client.send_message(chat_id=LOG_CHANNEL, text=f"#Newuser\nName: {message.from_user.mention}")
     await message.reply_text(START)        
 
-@Client.on_message(filters.command("settings") & filters.private)
+@Client.on_message(filters.command("settings"))
 async def settings(client, message):
     if FSUB_ID and not await not_subscribed(client, message):
         invite_link = await client.create_chat_invite_link(int(FSUB_ID))
@@ -107,7 +106,7 @@ async def settings(client, message):
     reply_markup = InlineKeyboardMarkup(btns)
     await message.reply_text("Select your Ai model:", reply_markup=reply_markup)
 
-@Client.on_message(filters.command("mode") & filters.private)
+@Client.on_message(filters.command("mode"))
 async def mode(client, message):    
     if FSUB_ID and not await not_subscribed(client, message):
         invite_link = await client.create_chat_invite_link(int(FSUB_ID))
@@ -163,7 +162,7 @@ async def chats(client, message):
         await message.reply_text(response.text)
         return 
     if message.chat.type != enums.ChatType.PRIVATE:        
-        if message.reply_to_message.from_user.id != client.me.id:  
+        if message.reply_to_message.from_user.id == client.me.id:  
             await client.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
             user_id = message.from_user.id    
             user_data = users.find_one({"user": user_id})        
