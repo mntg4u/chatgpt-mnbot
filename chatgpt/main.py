@@ -48,7 +48,7 @@ START = """👋 Hey there! I’m an Advanced ChatGPT Bot.
 
 Feel free to ask me anything for free! 
 
-**💬 Support: @XBOTSUPPORTS**"""
+**💬 Support: @MNBOTS_SUPPORT**"""
 
 @Client.on_callback_query()
 async def callback(client, query):
