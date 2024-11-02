@@ -8,5 +8,5 @@ async def not_subscribed(client, message):
         pass
     else:
         if user.status != enums.ChatMemberStatus.BANNED:
-            return False
-    return True
+            return True
+    return False
