@@ -18,7 +18,7 @@ async def create_paste(paste_content):
             else:
                 if response.content_type == 'text/html':                   
                     text = json.loads(await response.text())
-                    return {"url": text['url']}
+                    return text['url']
                 elif response.content_type == 'application/json':
                     data = await response.json()
                     return data

@@ -25,6 +25,6 @@ async def llamachat(client, message):
     ai = api.llama(query)
     if len(ai) > 3700:
         result = await create_paste(ai)  
-        await msg.edit(result["url"])
+        await msg.edit(result)
     else:
         await msg.edit(ai)
