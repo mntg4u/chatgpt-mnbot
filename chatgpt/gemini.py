@@ -24,7 +24,7 @@ async def Googleaii(client, message):
     msg = await message.reply_text("🔍")
     mango = Mango()
     response = mango.chat.completions.create(
-        model="gemini",      
+        model="gemini-1.5-flash",      
         messages=[{"role": "user", "content": query}]
     )
     if len(response.text) > 3700:        

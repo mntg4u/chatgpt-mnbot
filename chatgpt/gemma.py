@@ -24,7 +24,7 @@ async def gemma_chat(client, message):
     msg = await message.reply_text("🔍")
     mango = Mango()
     response = mango.chat.completions.create(
-        model="gemma-2",
+        model="gemma2-9b-It",
         messages=[{"role": "user", "content": query}]
     )
     if len(response.text) > 3700:        
