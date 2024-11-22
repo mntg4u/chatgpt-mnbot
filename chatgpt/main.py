@@ -36,18 +36,28 @@ mango = Mango()
 
 START = """👋 Hey there! I’m an Advanced ChatGPT Bot.
 
-**✨ Commands you can use:**
+**🎭 Text Models:**
 
-- **/mode** - Add your preferred mode.
-- **/settings** - Change the AI model or add your favorite AI.
-- **/llama** - Access Meta AI.
-- **/claude** - Interact with Claude AI.
-- **/gpt** - Use GPT by OpenAI.
-- **/gpt4** - Explore GPT-4.
-- **/gemma** - Gemma Ai by Google
-- **/blackbox** - Real time Ai by Blackbox 
-- **/google** - Gemini by Google 
-- **/img** - image search 
+» `/mode` - Add your preferred mode.
+» `settings` - Change the AI model or add your favorite AI.
+
+You can use this to reply with text and also support replies to images.
+
+If the group replies to the bot using text, you can also use commands such as @{botusername} hi or hello @{botusername}.
+
+**📜 LLM Models:**
+
+» `/llama` - LLAMA by meta.
+» `/claude` - Better ai claude by Anthropic.
+» `/gpt` - Gpt-3.5-Turbo by Openai.
+» `/gpt4` - GPT-4 by Openai.
+» `/gemma` - Gemma Ai by Google.
+» `/blackbox` - Real time Ai by Blackbox.
+» `/google` - Gemini by Google.
+
+**📋 Misc:**
+
+» `/img` - image Download.
 
 Feel free to ask me anything for free! 
 
@@ -102,9 +112,12 @@ async def settings(client, message):
         return 
     user_id = message.from_user.id
     btns = [
-        [InlineKeyboardButton("Gpt-3.5", callback_data="set:gpt-3.5")],
+        [InlineKeyboardButton("Gpt-3.5-turbo", callback_data="set:gpt-3.5-turbo")],
         [InlineKeyboardButton("Llama", callback_data="set:llama3-70b")],
         [InlineKeyboardButton("Gpt-4o-mini", callback_data="set:gpt-4o-mini")],
+        [InlineKeyboardButton("Gpt-4o", callback_data="set:gpt-4o")],
+        [InlineKeyboardButton("Gpt-4-turbo", callback_data="set:gpt-4o-turbo")],
+        [InlineKeyboardButton("Gemini-1.5-flash", callback_data="set:gemini-1.5-flash")],
         [InlineKeyboardButton("Gemma-2", callback_data="set:gemma-2")]
     ]
     reply_markup = InlineKeyboardMarkup(btns)
