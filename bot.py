@@ -1,6 +1,6 @@
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
-from chatgpt import web_server 
+from chatgpt import web_server
 
 class Bot(Client):
     def __init__(self):
@@ -14,9 +14,13 @@ class Bot(Client):
             sleep_threshold=15,
         )
 
-    async def start(self,**kwargs):
+    async def start(self, **kwargs):
+        # Call super().start() to initialize the bot
         await super().start()
         me = await self.get_me()     
         print(f"{me.first_name} Now Working 😘")
-        
-Bot().run()
+
+# Run the bot (This is handled internally by pyrogram's `run()` method)
+if __name__ == "__main__":
+    bot = Bot()
+    bot.run()
