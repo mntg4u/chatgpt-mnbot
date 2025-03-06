@@ -4,3 +4,4 @@ HorridAPI
 pymongo
 requests
 aiohttp
+asyncio
