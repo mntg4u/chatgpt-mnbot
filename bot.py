@@ -1,3 +1,4 @@
+import asyncio
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
 from chatgpt import web_server
@@ -15,12 +16,12 @@ class Bot(Client):
         )
 
     async def start(self, **kwargs):
-        # Call super().start() to initialize the bot
+        # Make sure we don't create a new event loop here
         await super().start()
-        me = await self.get_me()     
+        me = await self.get_me()
         print(f"{me.first_name} Now Working 😘")
 
-# Run the bot (This is handled internally by pyrogram's `run()` method)
 if __name__ == "__main__":
+    # Use asyncio.run() to properly manage the event loop
     bot = Bot()
-    bot.run()
+    asyncio.run(bot.start())
