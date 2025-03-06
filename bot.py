@@ -14,7 +14,7 @@ class Bot(Client):
             sleep_threshold=15,
         )
 
-    async def start(self):
+    async def start(self,**kwargs):
         await super().start()
         me = await self.get_me()     
         print(f"{me.first_name} Now Working 😘")
